@@ -39,7 +39,7 @@ module CollectiveIdea
         def authenticate(username, password)
           imap = Net::IMAP.new imap_authenicatable_options[:host], imap_authenicatable_options[:port], imap_authenicatable_options[:ssl] 
           username = clean_username(username)
-          imap.authenticate('LOGIN', username, password)
+          imap.login(username, password)
           
           if imap_authenicatable_options[:allow_new_users]
             find_or_create_by_username(username)
